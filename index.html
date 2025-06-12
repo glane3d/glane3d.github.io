@@ -1,1 +1,570 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- SEO Meta Tags -->
+  <title>GLane3D: Detecting Lanes with Graph of 3D Keypoints | CVPR 2025</title>
+  <meta name="description" content="GLane3D is a CVPR 2025 paper introducing a novel method for lane detection using a graph of 3D keypoints.">
+  <meta name="keywords" content="GLane3D, lane detection, 3D keypoints, CVPR 2025, computer vision, graph neural networks, autonomous driving, scene understanding">
+  <meta name="author" content="Halil Ibrahim Öztürk, Esat Kalfaoğlu, Ozsel Kilinc">
+
+  <!-- Open Graph Meta Tags (for Facebook, LinkedIn, etc.) -->
+  <meta property="og:title" content="GLane3D: Detecting Lanes with Graph of 3D Keypoints">
+  <meta property="og:description" content="A CVPR 2025 paper proposing a novel lane detection approach based on 3D keypoint graphs.">
+  <meta property="og:url" content="https://yourdomain.com/"> <!-- Replace with actual URL -->
+  <meta property="og:image" content="static/images/your_banner_image.png"> <!-- Replace with actual image -->
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GLane3D: Detecting Lanes with Graph of 3D Keypoints">
+  <meta name="twitter:description" content="CVPR 2025 paper on graph-based 3D lane detection.">
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png"> <!-- Replace if needed -->
+
+  
+  <!-- Responsive Layout -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Favicon and Fonts -->
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+          
+  <title>GLane3D: Detecting Lanes with Graph of 3D Keypoints</title>
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">GLane3D: Detecting Lanes with Graph of 3D Keypoints</h1>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://www.linkedin.com/in/halil-ibrahim-öztürk-184b91149" target="_blank">Halil Ibrahim Öztürk</a>,</span>
+                <span class="author-block">
+                  <a href="https://www.linkedin.com/in/esat-kalfaoglu-a73615160/" target="_blank">Esat Kalfaoğlu</a>,</span>
+                  <span class="author-block">
+                    <a href="https://www.linkedin.com/in/ozsel-kilinc/" target="_blank">Ozsel Kilinc</a>
+                  </span>
+                  </div>
+
+                  <div class="is-size-5 publication-authors"
+                    <span class="author-block">Togg/Trutek AI Team<br>CVPR 2025</span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                         <!-- Arxiv PDF link -->
+                      <span class="link-block">
+                        <a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Ozturk_GLane3D_Detecting_Lanes_with_Graph_of_3D_Keypoints_CVPR_2025_paper.pdf" target="_blank"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fas fa-file-pdf"></i>
+                        </span>
+                        <span>Paper</span>
+                      </a>
+                    </span>
+
+<!--                  <!-- Github link -->
+<!--                  <span class="link-block">-->
+<!--                    <a href="https://github.com/YOUR REPO HERE" target="_blank"-->
+<!--                    class="external-link button is-normal is-rounded is-dark">-->
+<!--                    <span class="icon">-->
+<!--                      <i class="fab fa-github"></i>-->
+<!--                    </span>-->
+<!--                    <span>Code</span>-->
+<!--                  </a>-->
+<!--                </span>-->
+
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2503.23882" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
+  
+<!-- Model Figure -->
+<section class="section">
+<div class="container is-max-desktop">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-fullwidth">
+      <figure class="image is-21by9">
+        <img src="static/images/model.png" alt="Model architecture of GLane3D">
+      </figure>
+      <p class="subtitle is-5">
+        Figure: Overview of the GLane3D model architecture.
+      </p>
+    </div>
+  </div>
+</div>
+</section>
+<!-- End Model Figure -->
+
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+          Accurate and efficient lane detection in 3D space is essential for autonomous driving systems, where robust generalization is the foremost requirement for 3D lane detection algorithms. Considering the extensive variation in lane structures worldwide, achieving high generalization capacity is particularly challenging, as algorithms must accurately identify a wide variety of lane patterns worldwide. Traditional top-down approaches rely heavily on learning lane characteristics from training datasets, often struggling with lanes exhibiting previously unseen attributes. To address this generalization limitation, we propose a method that detects keypoints of lanes and subsequently predicts sequential connections between them to construct complete 3D lanes. Each key point is essential for maintaining lane continuity, and we predict multiple proposals per keypoint by allowing adjacent grids to predict the same keypoint using an offset mechanism. PointNMS is employed to eliminate overlapping proposal keypoints, reducing redundancy in the estimated BEV graph and minimizing computational overhead from connection estimations. Our model surpasses previous state-of-the-art methods on both the Apollo and OpenLane datasets, demonstrating superior F1 scores and a strong generalization capacity when models trained on OpenLane are evaluated on the Apollo dataset, compared to prior approaches.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End paper abstract -->
+
+<!-- Pipeline Stages Row -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Method Overview</h2>
+    
+    <div class="columns is-multiline is-mobile is-centered">
+      <div class="column is-one-quarter has-text-centered">
+        <figure class="image is-2by3">
+          <img src="static/images/stage-a.png" alt="Stage A">
+        </figure>
+        <figcaption class="mt-2">(a)</figcaption>
+
+      </div>
+      <div class="column is-one-quarter has-text-centered">
+        <figure class="image is-2by3">
+          <img src="static/images/stage-b.png" alt="Stage B">
+        </figure>
+        <figcaption class="mt-2">(b)</figcaption>
+
+      </div>
+      <div class="column is-one-quarter has-text-centered">
+        <figure class="image is-2by3">
+          <img src="static/images/stage-c.png" alt="Stage C">
+        </figure>
+        <figcaption class="mt-2">(c)</figcaption>
+      </div>
+      <div class="column is-one-quarter has-text-centered">
+        <figure class="image is-2by3">
+          <img src="static/images/stage-d.png" alt="Stage D">
+        </figure>
+        <figcaption class="mt-2">(d)</figcaption>
+
+      </div>
+    </div>
+
+    <div class="content mt-5">
+        <ul>
+          <li><strong>a) Multiple Proposals:</strong> Multiple keypoint proposals are generated for each lane by selecting the top N anchor points with the highest scores from the predicted segmentation map <code>𝑀<sub>seg</sub></code>. These proposals are sampled within a lateral distance <code>dₓ</code> from the target lanes, increasing robustness to ensure that no keypoints are missed due to sparse or noisy predictions.</li>
+
+          <li><strong>b) Keypoint Refinement:</strong> Each proposed keypoint is refined toward its corresponding location on the lane by applying a predicted lateral offset. This adjustment aligns proposals more precisely to the actual lane geometry, improving spatial accuracy and continuity along the lane.</li>
+
+          <li><strong>c) Redundancy Suppression (PointNMS):</strong> To reduce redundancy and computational load, PointNMS is applied to suppress overlapping proposals. Only the top S keypoints with the highest confidence scores are retained, ensuring that the remaining keypoints are both distinct and reliable.</li>
+
+          <li><strong>d) Connection Estimation:</strong> Directed connections between the retained keypoints are estimated to construct a lane graph. A relationship head predicts an adjacency matrix <code>𝑨</code>, encoding which keypoints are connected in a sequential manner to represent continuous lane segments.</li>
+
+          <li><strong> Lane Extraction:</strong> Final lanes are extracted by applying Dijkstra’s shortest path algorithm over the graph of keypoints. This graph-based decoding traces the most plausible paths between start and end keypoints, enabling robust reconstruction of complete lane topologies.</li>
+        </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Quantitative Results Table - 1.5m -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4 has-text-centered">Quantitative Results @ 1.5m (OpenLane Dataset)</h2>
+    <div class="table-container">
+      <table class="table is-striped is-bordered is-fullwidth is-hoverable is-size-7">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Backbone</th>
+            <th>F1-Score ↑</th>
+            <th>X-error near (m) ↓</th>
+            <th>X-error far (m) ↓</th>
+            <th>Z-error near (m) ↓</th>
+            <th>Z-error far (m) ↓</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>PersFormer</td><td>EffNet-B7</td><td>50.5</td><td>0.485</td><td>0.553</td><td>0.364</td><td>0.431</td></tr>
+          <tr><td>BEV-LaneDet</td><td>ResNet-34</td><td>58.4</td><td>0.309</td><td>0.659</td><td>0.244</td><td>0.631</td></tr>
+          <tr><td>Anchor3DLane</td><td>EffNet-B3</td><td>53.7</td><td>0.276</td><td>0.311</td><td>0.107</td><td>0.138</td></tr>
+          <tr><td>LATR</td><td>ResNet-50</td><td>61.9</td><td>0.219</td><td>0.259</td><td>0.075</td><td>0.104</td></tr>
+          <tr><td>LaneCPP</td><td>EffNet-B7</td><td>60.3</td><td>0.264</td><td>0.310</td><td>0.077</td><td>0.117</td></tr>
+          <tr><td>PVALane</td><td>ResNet-50</td><td>62.7</td><td>0.232</td><td>0.259</td><td>0.092</td><td>0.118</td></tr>
+          <tr><td>PVALane</td><td>Swin-B</td><td>63.4</td><td>0.226</td><td>0.257</td><td>0.093</td><td>0.119</td></tr>
+          <tr><td><strong>GLane3D-Lite (Ours)</strong></td><td><strong>ResNet-18</strong></td><td><strong>61.5</strong></td><td><strong>0.221</strong></td><td><strong>0.252</strong></td><td><strong>0.073</strong></td><td><strong>0.101</strong></td></tr>
+          <tr><td><strong>GLane3D-Base (Ours)</strong></td><td><strong>ResNet-50</strong></td><td><u><strong>63.9</strong></u></td><td><u><strong>0.193</strong></u></td><td><u><strong>0.234</strong></u></td><td><u><strong>0.065</strong></u></td><td><u><strong>0.090</strong></u></td></tr>
+          <tr><td><strong>GLane3D-Large (Ours)</strong></td><td><strong>Swin-B</strong></td><td><strong><span style="color:darkgreen;">66.0</span></strong></td><td><strong><span style="color:darkgreen;">0.170</span></strong></td><td><strong><span style="color:darkgreen;">0.203</span></strong></td><td><strong><span style="color:darkgreen;">0.063</span></strong></td><td><strong><span style="color:darkgreen;">0.087</span></strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Quantitative Results Table - 0.5m -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4 has-text-centered">Quantitative Results @ 0.5m (OpenLane Dataset)</h2>
+    <div class="table-container">
+      <table class="table is-striped is-bordered is-fullwidth is-hoverable is-size-7">
+        <thead>
+          <tr>
+            <th>Method</th>
+            <th>Backbone</th>
+            <th>F1-Score ↑</th>
+            <th>X-error near (m) ↓</th>
+            <th>X-error far (m) ↓</th>
+            <th>Z-error near (m) ↓</th>
+            <th>Z-error far (m) ↓</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>PersFormer</td><td>EffNet-B7</td><td>36.5</td><td>0.343</td><td>0.263</td><td>0.161</td><td>0.115</td></tr>
+          <tr><td>Anchor3DLane</td><td>EffNet-B3</td><td>34.9</td><td>0.344</td><td>0.264</td><td>0.181</td><td>0.134</td></tr>
+          <tr><td>PersFormer</td><td>ResNet-50</td><td>43.2</td><td>0.229</td><td>0.245</td><td>0.078</td><td>0.106</td></tr>
+          <tr><td>LATR</td><td>ResNet-50</td><td>54.0</td><td>0.171</td><td>0.201</td><td>0.072</td><td>0.099</td></tr>
+          <tr><td>DV-3DLane(Camera)</td><td>ResNet-34</td><td>52.9</td><td>0.173</td><td>0.212</td><td>0.069</td><td>0.098</td></tr>
+          <tr><td><strong>GLane3D-Lite (Ours)</strong></td><td><strong>ResNet-18</strong></td><td><strong>53.8</strong></td><td><strong>0.182</strong></td><td><strong>0.206</strong></td><td><strong>0.070</strong></td><td><strong>0.095</strong></td></tr>
+          <tr><td><strong>GLane3D-Base (Ours)</strong></td><td><strong>ResNet-50</strong></td><td><u><strong>57.9</strong></u></td><td><u><strong>0.157</strong></u></td><td><u><strong>0.179</strong></u></td><td><u><strong>0.067</strong></u></td><td><u><strong>0.087</strong></u></td></tr>
+          <tr><td><strong>GLane3D-Large (Ours)</strong></td><td><strong>Swin-B</strong></td><td><strong><span style="color:darkgreen;">61.1</span></strong></td><td><strong><span style="color:darkgreen;">0.142</span></strong></td><td><strong><span style="color:darkgreen;">0.167</span></strong></td><td><strong><span style="color:darkgreen;">0.061</span></strong></td><td><strong><span style="color:darkgreen;">0.084</span></strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- Cross-Dataset Evaluation Row with Visible Vertical Separator -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4 has-text-centered">Cross-Dataset Evaluation on Apollo Balanced Scenes</h2>
+
+    <div class="columns is-vcentered is-flex is-align-items-start">
+      <!-- Left Column: Table -->
+      <div class="column is-half">
+        <div class="table-container">
+          <table class="table is-striped is-bordered is-hoverable is-fullwidth is-size-7 caption-bottom">
+              <caption class="has-text-weight-semibold has-text-centered mt-2">
+                Table: Cross-Dataset Evaluation on Apollo Balanced Scenes
+              </caption>
+            <thead>
+              <tr>
+                <th rowspan="2">Dₜ</th>
+                <th rowspan="2">Methods</th>
+                <th rowspan="2">F1</th>
+                <th colspan="2">X-error (m) ↓</th>
+                <th colspan="2">Z-error (m) ↓</th>
+              </tr>
+              <tr>
+                <th>Near</th>
+                <th>Far</th>
+                <th>Near</th>
+                <th>Far</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th rowspan="3"><em>1.5m</em></th><td>PersFormer</td><td><u>53.2</u></td><td>0.407</td><td>0.813</td><td><u>0.122</u></td><td><strong>0.453</strong></td></tr>
+              <tr><td>LATR</td><td>34.3</td><td><u>0.327</u></td><td><u>0.737</u></td><td>0.142</td><td>0.500</td></tr>
+              <tr><td><strong>GLane3D</strong></td><td><strong>58.9</strong></td><td><strong>0.289</strong></td><td><strong>0.701</strong></td><td><strong>0.086</strong></td><td><u>0.479</u></td></tr>
+
+              <tr><th rowspan="3"><em>0.5m</em></th><td>PersFormer</td><td><u>17.4</u></td><td>0.246</td><td>0.381</td><td><u>0.098</u></td><td><u>0.214</u></td></tr>
+              <tr><td>LATR</td><td>19.0</td><td><u>0.201</u></td><td><u>0.313</u></td><td>0.116</td><td>0.220</td></tr>
+              <tr><td><strong>GLane3D</strong></td><td><strong>42.6</strong></td><td><strong>0.162</strong></td><td><strong>0.296</strong></td><td><strong>0.063</strong></td><td><strong>0.198</strong></td></tr>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+
+
+      <!-- Right Column: Figure -->
+      <div class="column is-half has-text-centered">
+        <figure class="image is-21by9">
+          <img src="static/images/cross_dataset.png" alt="Apollo Cross-Dataset Comparison">
+          <figcaption class="mt-2">Figure: Visual comparison on Apollo dataset.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Extended Apollo Results Table -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <h2 class="title is-4 has-text-centered">Apollo Dataset Results</h2>
+
+    <div class="table-container">
+      <table class="table is-striped is-bordered is-hoverable is-fullwidth is-size-7 caption-bottom">
+        <caption class="has-text-centered mt-3">
+          Table: Quantitative Results on the Apollo 3D Synthetic Dataset
+        </caption>
+        <thead>
+          <tr>
+            <th>Subset</th>
+            <th>Methods</th>
+            <th>Backbone</th>
+            <th>F1-Score (%) ↑</th>
+            <th>AP (%) ↑</th>
+            <th>X-error near (m) ↓</th>
+            <th>X-error far (m) ↓</th>
+            <th>Z-error near (m) ↓</th>
+            <th>Z-error far (m) ↓</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Balanced Scene -->
+          <tr><th rowspan="6"><em>Balanced Scene</em></th><td>PersFormer</td><td>EffNet-B7</td><td>92.9</td><td>-</td><td>0.054</td><td>0.356</td><td>0.010</td><td>0.234</td></tr>
+          <tr><td>BEVLaneDet</td><td>ResNet-34</td><td>96.9</td><td>-</td><td><strong>0.016</strong></td><td><strong>0.242</strong></td><td>0.020</td><td>0.216</td></tr>
+          <tr><td>LaneCPP</td><td>EffNet-B7</td><td><u>97.4</u></td><td><strong>99.5</strong></td><td>0.030</td><td>0.277</td><td>0.011</td><td><strong>0.206</strong></td></tr>
+          <tr><td>LATR</td><td>ResNet-50</td><td>96.8</td><td>97.9</td><td>0.022</td><td>0.253</td><td><strong>0.007</strong></td><td><strong>0.202</strong></td></tr>
+          <tr><td>DV-3DLane</td><td>ResNet-50</td><td>96.4</td><td>97.6</td><td>0.046</td><td>0.299</td><td>0.016</td><td><u>0.213</u></td></tr>
+          <tr><td><strong>GLane3D (Ours)</strong></td><td><strong>ResNet-50</strong></td><td><strong>98.1</strong></td><td><u>98.8</u></td><td><u>0.021</u></td><td><strong>0.250</strong></td><td><u>0.007</u></td><td>0.213</td></tr>
+
+          <!-- Rare Scene -->
+          <tr><th rowspan="6"><em>Rare Scene</em></th><td>PersFormer</td><td>EffNet-B7</td><td>87.5</td><td>-</td><td>0.107</td><td>0.782</td><td>0.024</td><td>0.602</td></tr>
+          <tr><td>BEVLaneDet</td><td>ResNet-34</td><td><u>97.6</u></td><td>-</td><td><strong>0.031</strong></td><td><strong>0.594</strong></td><td>0.040</td><td>0.556</td></tr>
+          <tr><td>LaneCPP</td><td>EffNet-B7</td><td>96.2</td><td><u>98.6</u></td><td>0.073</td><td>0.651</td><td><u>0.023</u></td><td><u>0.543</u></td></tr>
+          <tr><td>LATR</td><td>ResNet-50</td><td>96.1</td><td>97.3</td><td>0.050</td><td><u>0.600</u></td><td><strong>0.015</strong></td><td><strong>0.532</strong></td></tr>
+          <tr><td>DV-3DLane</td><td>ResNet-50</td><td>95.5</td><td>97.2</td><td>0.071</td><td>0.664</td><td>0.025</td><td>0.568</td></tr>
+          <tr><td><strong>GLane3D (Ours)</strong></td><td><strong>ResNet-50</strong></td><td><strong>98.4</strong></td><td><strong>99.1</strong></td><td><u>0.044</u></td><td>0.621</td><td>0.023</td><td>0.566</td></tr>
+
+          <!-- Visual Variations -->
+          <tr><th rowspan="6"><em>Visual Variations</em></th><td>PersFormer</td><td>EffNet-B7</td><td>89.6</td><td>-</td><td>0.074</td><td>0.430</td><td><strong>0.015</strong></td><td>0.266</td></tr>
+          <tr><td>BEVLaneDet</td><td>ResNet-34</td><td><u>95.0</u></td><td>-</td><td><strong>0.027</strong></td><td><u>0.320</u></td><td>0.031</td><td>0.256</td></tr>
+          <tr><td>LaneCPP</td><td>EffNet-B7</td><td>90.4</td><td>93.7</td><td>0.054</td><td>0.327</td><td>0.020</td><td><strong>0.222</strong></td></tr>
+          <tr><td>LATR</td><td>ResNet-50</td><td><strong>95.1</strong></td><td><strong>96.6</strong></td><td>0.045</td><td><strong>0.315</strong></td><td><u>0.016</u></td><td><u>0.228</u></td></tr>
+          <tr><td>DV-3DLane</td><td>ResNet-50</td><td>91.3</td><td>93.4</td><td>0.095</td><td>0.417</td><td>0.040</td><td>0.320</td></tr>
+          <tr><td><strong>GLane3D (Ours)</strong></td><td><strong>ResNet-50</strong></td><td>92.7</td><td><u>94.8</u></td><td>0.046</td><td>0.364</td><td>0.020</td><td>0.317</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- Model Figure -->
+<section class="section">
+<div class="container is-max-desktop">
+  <div class="columns is-centered has-text-centered">
+
+    <div class="column is-fullwidth">
+        <h2 class="title is-4 has-text-centered">OpenLane Qualitative Results</h2>
+
+      <figure class="image is-21by9">
+        <img src="static/images/openlane_qual.png" alt="OpenLane Qualitative Results">
+      </figure>
+
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Model Figure -->
+<section class="section hero is-light">
+<div class="container is-max-desktop">
+  <div class="columns is-centered has-text-centered">
+
+    <div class="column is-fullwidth">
+        <h2 class="title is-4 has-text-centered">More Cross-Dataset Qualitative Results</h2>
+
+      <figure class="image is-21by9">
+        <img src="static/images/cross_dataset_more.png" alt="More Cross-Dataset Qualitative Results">
+      </figure>
+
+    </div>
+  </div>
+</div>
+</section>
+<!-- End Model Figure -->
+
+<!--<!-- Image carousel -->
+<!--<section class="hero is-small">-->
+<!--  <div class="hero-body">-->
+<!--    <div class="container">-->
+<!--      <div id="results-carousel" class="carousel results-carousel">-->
+<!--       <div class="item">-->
+<!--        <!-- Your image here -->
+<!--        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>-->
+<!--        <h2 class="subtitle has-text-centered">-->
+<!--          First image description.-->
+<!--        </h2>-->
+<!--      </div>-->
+<!--      <div class="item">-->
+<!--        <!-- Your image here -->
+<!--        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>-->
+<!--        <h2 class="subtitle has-text-centered">-->
+<!--          Second image description.-->
+<!--        </h2>-->
+<!--      </div>-->
+<!--      <div class="item">-->
+<!--        <!-- Your image here -->
+<!--        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>-->
+<!--        <h2 class="subtitle has-text-centered">-->
+<!--         Third image description.-->
+<!--       </h2>-->
+<!--     </div>-->
+<!--     <div class="item">-->
+<!--      <!-- Your image here -->
+<!--      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>-->
+<!--      <h2 class="subtitle has-text-centered">-->
+<!--        Fourth image description.-->
+<!--      </h2>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</section>-->
+<!-- End image carousel -->
+
+
+
+
+<!--<!-- Youtube video -->
+<!--<section class="hero is-small is-light">-->
+<!--  <div class="hero-body">-->
+<!--    <div class="container">-->
+<!--      <!-- Paper video. -->
+<!--      <h2 class="title is-3">Video Presentation</h2>-->
+<!--      <div class="columns is-centered has-text-centered">-->
+<!--        <div class="column is-four-fifths">-->
+<!--          -->
+<!--          <div class="publication-video">-->
+<!--            <!-- Youtube embed code here -->
+<!--            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<!--<!-- End youtube video -->
+<!---->
+<!---->
+<!--<!--<!-- Video carousel -->
+<!--<section class="hero is-small">-->
+<!--  <div class="hero-body">-->
+<!--    <div class="container">-->
+<!--      <h2 class="title is-3">Another Carousel</h2>-->
+<!--      <div id="results-carousel" class="carousel results-carousel">-->
+<!--        <div class="item item-video1">-->
+<!--          <video poster="" id="video1" autoplay controls muted loop height="100%">-->
+<!--            <!-- Your video file here -->
+<!--            <source src="static/videos/carousel1.mp4"-->
+<!--            type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-video2">-->
+<!--          <video poster="" id="video2" autoplay controls muted loop height="100%">-->
+<!--            <!-- Your video file here -->
+<!--            <source src="static/videos/carousel2.mp4"-->
+<!--            type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--        <div class="item item-video3">-->
+<!--          <video poster="" id="video3" autoplay controls muted loop height="100%">\-->
+<!--            <!-- Your video file here -->
+<!--            <source src="static/videos/carousel3.mp4"-->
+<!--            type="video/mp4">-->
+<!--          </video>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<!--<!-- End video carousel -->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--<!-- Paper poster -->
+<!--<section class="hero is-small is-light">-->
+<!--  <div class="hero-body">-->
+<!--    <div class="container">-->
+<!--      <h2 class="title">Poster</h2>-->
+<!---->
+<!--      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">-->
+<!--          </iframe>-->
+<!--        -->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+<!--<!--End paper poster -->
+
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@inproceedings{ozturk2025glane3d,
+          title={GLane3D: Detecting Lanes with Graph of 3D Keypoints},
+          author={{\"O}zt{\"u}rk, Halil {\.I}brahim and Kalfao{\u{g}}lu, Muhammet Esat and Kilinc, Ozsel},
+          booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+          pages={27508--27518},
+          year={2025}
+        }</code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Statcounter tracking code -->
+  
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+  </body>
+  </html>
